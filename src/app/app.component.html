@@ -1,3 +1,63 @@
-<h1>
-  {{title}}
-</h1>
+<div class="top-bar">
+  <div class="row">
+    <div class="top-bar-left">
+      <ul class="menu">
+        <li class="menu-text"><a href="/">College Ranking</a></li>
+      </ul>
+    </div>
+
+    <div class="top-bar-right">
+    </div>
+  </div>
+</div>
+<br />
+
+<div class="row">
+
+  <div class="large-6 columns">
+    <label>Filter by State</label>
+       <select (change)="filterState(filteredState.value)" #filteredState>
+        <option value="0">ALL</option>
+        <option *ngFor="let state of states">{{state.name}}</option>
+      </select>
+  </div>
+
+</div>
+
+<div *ngIf="appState == 'extend'">
+  <div class="row">
+    <div class="large-12 columns">
+        <button (click)="changeState('default')" class="button alert">Go Back</button>
+    </div>
+  </div>
+  <!--extended values -->
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <div *ngIf="colleges">
+      <table>
+        <thead>
+          <tr>
+            <th>RANK</th>
+            <th>Name</th>
+            <th>State</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let college of colleges">
+            <td>{{college.rank}}</td>
+            <td>{{college.name}}</td>
+            <td>{{college.state}}</td>
+            <td><button class="button secondary">Explore</button></td>
+            <td><button class="button secondary">Location</button></td>
+            <td><button class="button">More..</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
